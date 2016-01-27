@@ -71,6 +71,16 @@ public class IntercomBridge extends CordovaPlugin {
     }
 
     private enum Action {
+        setAppCredentials {
+            @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
+                String apiKey = args.optString(0);
+                String appId = args.optString(1);
+
+                Intercom.initialize(IntercomBridge.this.cordova.getActivity().getApplication(), apiKey, appId);
+
+                callbackContext.success();
+            }
+        },
         registerIdentifiedUser {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
                 JSONObject options = args.optJSONObject(0);

@@ -21,6 +21,14 @@
     [Intercom setApiKey:apiKey forAppId:appId];
 }
 
+- (void)setAppCredentials:(CDVInvokedUrlCommand*)command {
+    NSString *apiKey = command.arguments[0];
+    NSString *appId = command.arguments[1];
+
+    [Intercom setApiKey:apiKey forAppId:appId];
+    [self sendSuccess:command];
+}
+
 - (void)registerIdentifiedUser:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = command.arguments[0];
     NSString* userId      = options[@"userId"];

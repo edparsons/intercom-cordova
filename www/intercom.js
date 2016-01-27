@@ -1,4 +1,8 @@
 var intercom = {
+    setAppCredentials: function(apiKey, appId, success, error) {
+        cordova.exec(success, error, 'Intercom', 'setAppCredentials', [apiKey, appId]);
+    },
+
     registerIdentifiedUser: function(options, success, error) {
         cordova.exec(success, error, 'Intercom', 'registerIdentifiedUser', [options]);
     },
